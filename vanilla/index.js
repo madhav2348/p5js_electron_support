@@ -17,14 +17,12 @@ const server = require("./server");
 async function createWindow() {
   const startServer = await server();
   let mainWindow = new BrowserWindow({
-    width: 800, // Initial width (can be anything, will be adjusted)
-    height: 600, // Initial height (can be anything, will be adjusted)
-    show: false, // Don't show until ready
-    useContentSize: true, // Make width/height refer to the content area
+    width: 800, 
+    height: 600, 
+    show: true, // not showing until ready
+    useContentSize: true, 
     webPreferences: {
-      preload: path.join(__dirname, "preload.js"), // For contextBridge
       nodeIntegration: false, // Best practice for security
-      contextIsolation: true, // Best practice for security
     },
   });
 
@@ -36,12 +34,11 @@ async function createWindow() {
     
     // const { width, height } = await mainWindow.webContents.executeJavaScript(
     //   (() => {
-    //     // You might want to get the size of a specific container if your body
-    //     // isn't exactly what you want to measure.
-    //     // Example: If you have a #app div:
-    //     const appDiv = document.querySelector("p5Canvas");
+    //     //  Or some king of Resized observer syncronusly get fit with window
+    //     // To get height and width of cava created 
+    //     const appDiv = document.getElementById("defaultCanvas0"); // ReferenceError: document is not defined
     //     if (appDiv) {
-    //       return { width: appDiv.offsetWidth, height: appDiv.offsetHeight };
+    //       return { width: appDiv.offsetWidthh, height: appDiv.offsetHeight };
     //     }
     //   })()
     // );
